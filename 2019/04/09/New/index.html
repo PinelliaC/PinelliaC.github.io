@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://pinelliaw.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="xxxxxx">
+<meta name="keywords" content="11">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uniswap接口说明">
+<meta property="og:url" content="http://pinelliaw.com/2019/04/09/New/index.html">
+<meta property="og:site_name" content="林深见鹿，深海见鲸">
+<meta property="og:description" content="xxxxxx">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-29T08:02:17.236Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="uniswap接口说明">
+<meta name="twitter:description" content="xxxxxx">
+
+<link rel="canonical" href="http://pinelliaw.com/2019/04/09/New/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>uniswap接口说明 | 林深见鹿，深海见鲸</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">林深见鹿，深海见鲸</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://pinelliaw.com/2019/04/09/New/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/54969419?s=400&v=4">
+      <meta itemprop="name" content="PinelliaW">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林深见鹿，深海见鲸">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          uniswap接口说明
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-09 10:39:36" itemprop="dateCreated datePublished" datetime="2019-04-09T10:39:36+08:00">2019-04-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-29 16:02:17" itemprop="dateModified" datetime="2019-11-29T16:02:17+08:00">2019-11-29</time>
+              </span>
+
+          
+            <div class="post-description">xxxxxx</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="changelog"><a href="#changelog" class="headerlink" title="changelog"></a>changelog</h3><p>2019年07月30日：</p>
+<ol>
+<li>在<code>traderecord</code>中，增加<code>fee</code>的字段，用以增加手续费的值。</li>
+<li>现在限价交易可以支持填入<code>quantity</code>的值，意为在<code>price</code>的价格下消耗<code>quantity</code>的通证数，无论换出多少个<code>to</code>。</li>
+</ol>
+<p>2019年07月31日：</p>
+<ol>
+<li>在<code>bidrec</code>中增加<code>filled</code>参数，用于计算在限价交易中填入<code>from</code>时挂单的数量。</li>
+</ol>
+<p>2019年08月12日</p>
+<ol>
+<li><code>withdrawrec</code>修改为<code>orderchange</code></li>
+</ol>
+<h3 id="加仓"><a href="#加仓" class="headerlink" title="加仓"></a>加仓</h3><h4 id="abi"><a href="#abi" class="headerlink" title="abi"></a>abi</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;addreserves&quot;,</span><br><span class="line">    &quot;base&quot;: &quot;&quot;,</span><br><span class="line">    &quot;fields&quot;: [</span><br><span class="line">      &#123;&quot;name&quot;:&quot;owner&quot;,&quot;type&quot;:&quot;account_name&quot;&#125;,  // 用户</span><br><span class="line">      &#123;&quot;name&quot;:&quot;tokenx&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;, 	// x 通证</span><br><span class="line">      &#123;&quot;name&quot;:&quot;tokeny&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125; 	// y 通证</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="调用实例"><a href="#调用实例" class="headerlink" title="调用实例"></a>调用实例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctx.addreservesSync(<span class="string">"fibos"</span>, <span class="string">"20.0000 FO@eosio"</span>, <span class="string">"10.0000 EOS@eosio"</span>, &#123;</span><br><span class="line">    authorization: <span class="string">"fibos"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h4><p>注：以下所有的限制均不包含常规限制，例如权限不对，精度不对等。本文提到的限制都是特定的限制。</p>
+<ul>
+<li>已经为<code>bancor</code>的币币对，不能成为<code>uniswap</code>的币币对。否则报错。</li>
+<li>加仓后正负价格不能超过 0.1%。否则报错。</li>
+<li>加仓后个人权重增加必须大于0。否则报错。</li>
+</ul>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>没有对应<code>uniswap</code>市场，则创建；有对应市场，则更新。同时更新用户权重持有表，见下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">fibos.getTableRowsSync(<span class="literal">true</span>, <span class="string">"eosio.token"</span>, <span class="string">"eosio.token"</span>, <span class="string">"swapmarket"</span>)</span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"rows"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"primary"</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="string">"tokenx"</span>: &#123;</span><br><span class="line">        <span class="string">"quantity"</span>: <span class="string">"140.0000 FO"</span>,</span><br><span class="line">        <span class="string">"contract"</span>: <span class="string">"eosio"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tokeny"</span>: &#123;</span><br><span class="line">        <span class="string">"quantity"</span>: <span class="string">"10030.0000 EOS"</span>,</span><br><span class="line">        <span class="string">"contract"</span>: <span class="string">"eosio"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"total_weights"</span>: <span class="string">"11849.89451429842847574"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"more"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fibos.getTableRowsSync(<span class="literal">true</span>, <span class="string">"eosio.token"</span>, <span class="number">0</span>, <span class="string">"swappool"</span>) <span class="comment">// 此处的"0"对应的对应币币对的 primary</span></span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"rows"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"owner"</span>: <span class="string">"fibos"</span>,</span><br><span class="line">      <span class="string">"weights"</span>: <span class="string">"11356.56329871202615323"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"owner"</span>: <span class="string">"user1"</span>,</span><br><span class="line">      <span class="string">"weights"</span>: <span class="string">"493.33121558640181092"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"more"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上例的情况是，<code>EOS-FO</code>的<code>uniswap</code>的市场中，<code>EOS</code>的总额为<code>10030.0000 EOS</code>，<code>FO</code>的总额为<code>140.0000 FO</code>，所有持仓者总权重为<code>11849.89451429842847574</code>。</p>
+<p>在该市场中，有两个持仓者，分别为<code>fibos</code>和<code>user1</code>。他们在总市场中的权重分别为<code>11356.56329871202615323</code>和<code>493.33121558640181092</code>。</p>
+<h3 id="减仓"><a href="#减仓" class="headerlink" title="减仓"></a>减仓</h3><h4 id="abi-1"><a href="#abi-1" class="headerlink" title="abi"></a>abi</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name&quot;: &quot;outreserves&quot;,</span><br><span class="line">    &quot;base&quot;: &quot;&quot;,</span><br><span class="line">    &quot;fields&quot;: [</span><br><span class="line">      &#123;&quot;name&quot;:&quot;owner&quot;,&quot;type&quot;:&quot;account_name&quot;&#125;, // 用户</span><br><span class="line">      &#123;&quot;name&quot;:&quot;x&quot;,&quot;type&quot;:&quot;extended_symbol&quot;&#125;,  // x通证</span><br><span class="line">      &#123;&quot;name&quot;:&quot;y&quot;,&quot;type&quot;:&quot;extended_symbol&quot;&#125;,  // y通证</span><br><span class="line">      &#123;&quot;name&quot;:&quot;rate&quot;,&quot;type&quot;:&quot;float64&quot;&#125; // 需要提取的比例</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="调用实例-1"><a href="#调用实例-1" class="headerlink" title="调用实例"></a>调用实例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctx.outreservesSync(name, <span class="string">"0.0000 FO@eosio"</span>, <span class="string">"0.0000 EOS@eosio"</span>, <span class="number">0.1</span>, &#123; <span class="comment">// 0&lt;rate&lt;=1</span></span><br><span class="line">    authorization: name</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="限制-1"><a href="#限制-1" class="headerlink" title="限制"></a>限制</h4><ul>
+<li>$0&lt;rate\leq1$，目前没有精度限制。否则报错。</li>
+<li>该<code>uniswap</code>必须存在。否则报错。</li>
+<li>该用户在该<code>uniswap</code>市场中必须拥有份额。否则报错。</li>
+<li>用户提取出来的<code>token</code>数必须大于该币种的最小精度。否则报错。</li>
+<li>用户提取结束后剩余的权重必须大于总权重部分的0.1%。否则报错。</li>
+</ul>
+<h4 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h4><p>在 <code>uniswap</code>市场中，用户所拥有的<code>token</code>份额以权重的形式展示。在减仓的时候<strong>不能</strong>设置提取某一个数额的<code>token</code>出来，只能设置提取的比例，按照对应的比例获得对应的币币对。详细公式见下：<br>$$<br>\begin{gather}<br>a\times{b}=S\\<br>填仓:\; a_{new}\times{b_{new}}=S_{new}\\<br>计算权重：\;\frac{\sqrt{S_{new}}-\sqrt{S}}{\sqrt{S}}\times{weights}\\<br>减仓比例：\;r=\frac{weigehts_{个人}}{weights_{全部}}\times{rate}_{传入值}\\<br>减仓提取：(a_{new}\times{r})\quad(b_{new}\times{r})<br>\end{gather}<br>$$</p>
+<h3 id="交易（限价和市价交易以及-bancor-交易）"><a href="#交易（限价和市价交易以及-bancor-交易）" class="headerlink" title="交易（限价和市价交易以及 bancor 交易）"></a>交易（限价和市价交易以及 bancor 交易）</h3><h4 id="abi-2"><a href="#abi-2" class="headerlink" title="abi"></a>abi</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;exchange&quot;,</span><br><span class="line">    &quot;base&quot;: &quot;&quot;,</span><br><span class="line">    &quot;fields&quot;: [</span><br><span class="line">      &#123;&quot;name&quot;:&quot;owner&quot;, &quot;type&quot;:&quot;account_name&quot;&#125;,</span><br><span class="line">      &#123;&quot;name&quot;:&quot;quantity&quot;, &quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">      &#123;&quot;name&quot;:&quot;to&quot;, &quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">      &#123;&quot;name&quot;:&quot;price&quot;, &quot;type&quot;:&quot;float64&quot;&#125;,</span><br><span class="line">      &#123;&quot;name&quot;:&quot;id&quot;, &quot;type&quot;:&quot;account_name&quot;&#125;,</span><br><span class="line">      &#123;&quot;name&quot;:&quot;memo&quot;, &quot;type&quot;:&quot;string&quot;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="限制-2"><a href="#限制-2" class="headerlink" title="限制"></a>限制</h4><ul>
+<li><p><code>bancor</code> 交易和 <code>uniswap</code>共用一个接口，<strong>互为<code>bancor</code>交易对的不可以做<code>uniswap</code>交易</strong>。否则报错。</p>
+</li>
+<li><p>在市价交易的时候，<strong><code>quantity</code>的值必须不为0，<code>to</code>和<code>price</code>的值必须为0</strong>。否则报错。</p>
+</li>
+<li>在限价交易的时候，<strong><code>price</code>的价值必须不为0，<code>quantity</code>和<code>to</code>二者必须有且只一个值</strong>。否则报错。</li>
+<li>该<code>uniswap</code>市场必须存在。负责报错。</li>
+<li>用户兑换出来的<code>token</code>数必须大于该币种的最小精度。否则报错。</li>
+</ul>
+<h4 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h4><p>本接口支持限价、市价交易以及 bancor 交易。</p>
+<ul>
+<li>下面的例子以限价交易中，<code>to</code>有值为例，<code>from</code>有值类似。</li>
+</ul>
+<p>市价和限价的意义分别为：卖<code>quantity</code>去买<code>to</code>的通证，不论价格；以<code>price</code>的价格的价格买<code>to</code>的通证，无论花费多少的<code>quantity</code>，未买够<code>to</code>且价格已经高于<code>price</code>的部分会挂单。（以上均指正常交易的情况）<br>$$<br>\begin{gather}<br>我们已知：a\times{b}=S\\<br>P=\frac{a}{b}\\<br>在市价交易中，填入a_{1}，则：b_{new} = \frac{S}{a+a_{1}}\\<br>易知，用户在市价交易中兑换得出：b_{1} = b - b_{new}\\<br>\end{gather}<br>$$<br>在限价交易中，有价格<code>p</code>的限制，又有数量<code>to</code>的限制，还有订单的价格<code>order_price</code>概念<br>$$<br>\left[<br>    \begin{array}{cc|c}<br>      1&amp;2&amp;3\newline<br>      4&amp;5&amp;6<br>    \end{array}<br>\right]<br>$$<br>消耗的<code>from</code>和得到的<code>to</code>都必须大于该通证的最小精度。</p>
+<h4 id="实例（限价交易，市价同理）："><a href="#实例（限价交易，市价同理）：" class="headerlink" title="实例（限价交易，市价同理）："></a>实例（限价交易，市价同理）：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctx.exchangeSync(<span class="string">"fibos"</span>, <span class="string">"0.0000 EOS@eosio"</span>, <span class="string">"100.0000 FO@eosio"</span>, <span class="number">1.2</span>, <span class="string">"test"</span>, <span class="string">"test"</span>, &#123;</span><br><span class="line">   authorization: <span class="string">"fibos"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果挂单：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fibos.getTableRowsSync(true, "eosio.token", 0, "swaporder")</span><br><span class="line">---- result ---- &#123;</span><br><span class="line">  "rows": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"primary"</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">"owner"</span>: <span class="string">"fibos"</span>,</span><br><span class="line">      "price": "4294967296", // 该价格除以 2^32 为原价</span><br><span class="line">      "quantity": &#123;</span><br><span class="line">        "quantity": "100.0000 EOS",</span><br><span class="line">        "contract": "eosio"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  "more": false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="撤单"><a href="#撤单" class="headerlink" title="撤单"></a>撤单</h3><h3 id="abi-3"><a href="#abi-3" class="headerlink" title="abi"></a>abi</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      &quot;name&quot;: &quot;withdraw&quot;,</span><br><span class="line">      &quot;base&quot;: &quot;&quot;,</span><br><span class="line">      &quot;fields&quot;: [</span><br><span class="line">        &#123;&quot;name&quot;:&quot;owner&quot;,&quot;type&quot;:&quot;account_name&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;x&quot;,&quot;type&quot;:&quot;extended_symbol&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;y&quot;,&quot;type&quot;:&quot;extended_symbol&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;bid_id&quot;,&quot;type&quot;:&quot;uint64&quot;&#125; // 撤单 ID 全局唯一</span><br><span class="line">      ]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h4><p>撤单会撤销该用户的此 ID 的挂单，挂单金额打回账户</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctx.withdrawSync(<span class="string">"fibos"</span>, <span class="string">"0.0000 FO@eosio"</span>, <span class="string">"0.0000 EOS@eosio"</span>, bid_id, &#123;</span><br><span class="line">	authorization: <span class="string">"fibos"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="RECEIPT-用于服务端记录"><a href="#RECEIPT-用于服务端记录" class="headerlink" title="RECEIPT(用于服务端记录)"></a>RECEIPT(用于服务端记录)</h3><h4 id="abi-4"><a href="#abi-4" class="headerlink" title="abi"></a>abi</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      &quot;name&quot;: &quot;outreceipt&quot;,</span><br><span class="line">      &quot;base&quot;: &quot;&quot;,</span><br><span class="line">      &quot;fields&quot;: [</span><br><span class="line">        &#123;&quot;name&quot;:&quot;owner&quot;,&quot;type&quot;:&quot;account_name&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;x&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;y&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">      &quot;name&quot;: &quot;traderecord&quot;,</span><br><span class="line">      &quot;base&quot;: &quot;&quot;,</span><br><span class="line">      &quot;fields&quot;: [</span><br><span class="line">        &#123;&quot;name&quot;:&quot;owner&quot;,&quot;type&quot;:&quot;account_name&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;oppo&quot;,&quot;type&quot;:&quot;account_name&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;from&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;to&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;fee&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;bid_id&quot;,&quot;type&quot;:&quot;uint64&quot;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">      &quot;name&quot;: &quot;orderchange&quot;,</span><br><span class="line">      &quot;base&quot;: &quot;&quot;,</span><br><span class="line">      &quot;fields&quot;: [</span><br><span class="line">        &#123;&quot;name&quot;:&quot;bid_id&quot;,&quot;type&quot;:&quot;uint64&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;state&quot;,&quot;type&quot;:&quot;uint8&quot;&#125;//WITHDRAW = 1,COMPLETE = 2,INVERSE = 3,</span><br><span class="line">      ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">      &quot;name&quot;: &quot;bidrec&quot;,</span><br><span class="line">      &quot;base&quot;: &quot;&quot;,</span><br><span class="line">      &quot;fields&quot;: [</span><br><span class="line">        &#123;&quot;name&quot;:&quot;price&quot;,&quot;type&quot;:&quot;uint64&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;quantity&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;filled&quot;,&quot;type&quot;:&quot;extended_asset&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;bid_id&quot;,&quot;type&quot;:&quot;uint64&quot;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">      &quot;name&quot;: &quot;pricerec&quot;,</span><br><span class="line">      &quot;base&quot;: &quot;&quot;,</span><br><span class="line">      &quot;fields&quot;: [</span><br><span class="line">        &#123;&quot;name&quot;:&quot;old_price&quot;,&quot;type&quot;:&quot;uint64&quot;&#125;,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;new_price&quot;,&quot;type&quot;:&quot;uint64&quot;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/11/" rel="tag"># 11</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#changelog"><span class="nav-number">1.</span> <span class="nav-text">changelog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加仓"><span class="nav-number">2.</span> <span class="nav-text">加仓</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#abi"><span class="nav-number">2.1.</span> <span class="nav-text">abi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用实例"><span class="nav-number">2.2.</span> <span class="nav-text">调用实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#限制"><span class="nav-number">2.3.</span> <span class="nav-text">限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">2.4.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减仓"><span class="nav-number">3.</span> <span class="nav-text">减仓</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#abi-1"><span class="nav-number">3.1.</span> <span class="nav-text">abi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用实例-1"><span class="nav-number">3.2.</span> <span class="nav-text">调用实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#限制-1"><span class="nav-number">3.3.</span> <span class="nav-text">限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明-1"><span class="nav-number">3.4.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交易（限价和市价交易以及-bancor-交易）"><span class="nav-number">4.</span> <span class="nav-text">交易（限价和市价交易以及 bancor 交易）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#abi-2"><span class="nav-number">4.1.</span> <span class="nav-text">abi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#限制-2"><span class="nav-number">4.2.</span> <span class="nav-text">限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明-2"><span class="nav-number">4.3.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例（限价交易，市价同理）："><span class="nav-number">4.4.</span> <span class="nav-text">实例（限价交易，市价同理）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤单"><span class="nav-number">5.</span> <span class="nav-text">撤单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abi-3"><span class="nav-number">6.</span> <span class="nav-text">abi</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说明-3"><span class="nav-number">6.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">6.2.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RECEIPT-用于服务端记录"><span class="nav-number">7.</span> <span class="nav-text">RECEIPT(用于服务端记录)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#abi-4"><span class="nav-number">7.1.</span> <span class="nav-text">abi</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="PinelliaW" src="https://avatars2.githubusercontent.com/u/54969419?s=400&v=4">
+  <p class="site-author-name" itemprop="name">PinelliaW</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PinelliaW</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>
