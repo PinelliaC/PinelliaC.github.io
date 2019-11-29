@@ -19,7 +19,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('http://pinelliaw.com').hostname,
+    hostname: new URL('https://www.yoursite.com').hostname,
     root: '/',
     scheme: 'Mist',
     version: '7.5.0',
@@ -48,14 +48,14 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="about">
-<meta property="og:url" content="http://pinelliaw.com/about/index.html">
+<meta property="og:url" content="https://www.yoursite.com/about/index.html">
 <meta property="og:site_name" content="林深见鹿，深海见鲸">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-29T07:41:44.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
 
-<link rel="canonical" href="http://pinelliaw.com/about/">
+<link rel="canonical" href="https://www.yoursite.com/about/">
 
 
 <script id="page-configurations">
@@ -99,8 +99,13 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
+  <script type="text/javascript">
+    var host = "pinelliaw.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
